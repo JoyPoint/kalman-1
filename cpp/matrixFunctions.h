@@ -2,19 +2,30 @@
 #include <vector>
 #include "stdio.h"
 
-#define COL 3
-#define ROW 3
-#define N 144
-#define POSTCOVAR 10000
+using  std::vector;
 
-class arrayFunc
+#ifndef MATRIX_FUNC_H
+#define MATRIX_FUNC_H
+
+class matrixFunctions 
 {
-
 	public:
-		arrayFunc();
+		matrixFunctions();
 		void initMultiArray(vector< vector<float> > a, int rSize, int cSize);
-		void initNxNMatrixToEye(vector< vector<float> > a);
+		void init3DArray(vector< vector< vector<float> > > a, int rSize, int cSize, int zSize);		
+		vector< vector<float> > initNxNMatrixToEye(int size);
 		vector< vector<float> > matrixMult(vector< vector<float> > a, vector< vector<float> > b);
+		vector< vector<float> > transpose(vector< vector<float> > a);
+		vector< vector<float> > matrixAdd(vector< vector<float> > a, vector< vector<float> > b);
+		vector< vector<float> > matrixSub(vector< vector<float> > a, vector< vector<float> > b);		
+		vector< vector<float> > matrixInverse(vector< vector<float> > a);
+		vector< vector<float> > eyeMatrix(int size);
+		void adjoint(vector< vector<float> > a, vector< vector<float> > adj, vector< vector<float> > tmp);
+		int determinant(vector< vector<float> > detM, int n);
+		void getCofactor(vector< vector<float> > a, vector< vector<float> > tmp, int p, int q, int n);		
+	private:
+		int getColSize(vector< vector<float> > a);
 
 
 };
+#endif
